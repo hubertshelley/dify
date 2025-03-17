@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useChatWithHistoryContext } from '../context'
 import Form from './form'
@@ -21,6 +21,12 @@ const ConfigPanel = () => {
   const [collapsed, setCollapsed] = useState(true)
   const customConfig = appData?.custom_config
   const site = appData?.site
+
+  useEffect(() => {
+    setTimeout(() => {
+      handleStartChat()
+    }, 10)
+  })
 
   return (
     <div className='flex flex-col max-h-[80%] w-full max-w-[720px]'>

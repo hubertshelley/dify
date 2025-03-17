@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useEmbeddedChatbotContext } from '../context'
 import { useThemeContext } from '../theme/theme-context'
@@ -25,6 +25,12 @@ const ConfigPanel = () => {
   const customConfig = appData?.custom_config
   const site = appData?.site
   const themeBuilder = useThemeContext()
+
+  useEffect(() => {
+    setTimeout(() => {
+      handleStartChat()
+    }, 100)
+  })
 
   return (
     <div className='flex flex-col max-h-[80%] w-full max-w-[720px]'>

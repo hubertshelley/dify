@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useChatWithHistoryContext } from '../context'
 import Input from './form-input'
@@ -16,6 +16,16 @@ const Form = () => {
     handleNewConversationInputsChange,
     isMobile,
   } = useChatWithHistoryContext()
+
+  useEffect(() => {
+    // 提取query参数，并将其赋值给newConversationInputsRef.current
+    const query = new URLSearchParams(window.location.search)
+    for (const [key, value] of query.entries()) {
+      // 将key和value 赋值给 newConversationInputsRef.current
+      newConversationInputs[key] = value
+      newConversationInputsRef.current![key] = value
+    }
+  })
 
   const handleFormChange = useCallback((variable: string, value: any) => {
     handleNewConversationInputsChange({
